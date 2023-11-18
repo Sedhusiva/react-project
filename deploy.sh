@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check the Git branch
-if [[ $GIT_BRANCH == "origin/dev" ]]; then
+if [ "$GIT_BRANCH" == "origin/dev" ]; then
     # Build your project
     sudo ./build.sh
 
@@ -11,7 +11,7 @@ if [[ $GIT_BRANCH == "origin/dev" ]]; then
     # Push the image to the Dev Docker Hub repository
     sudo docker push sedhussr/dev
 
-elif [[ $GIT_BRANCH == "origin/main" ]]; then
+elif [ "$GIT_BRANCH" == "origin/main" ]; then
     # Build your project
     sudo ./build.sh
    
