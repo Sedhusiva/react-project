@@ -21,7 +21,7 @@ pipeline {
                 sh 'sudo chmod +x deploy.sh'
 
                 // Build the Docker image using the build script
-                sh './deploy.sh'
+                sh 'sudo ./deploy.sh'
                 }
 
               
