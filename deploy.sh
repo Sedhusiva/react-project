@@ -3,12 +3,8 @@
 # Check the Git branch
 if [[ $GIT_BRANCH == "origin/dev" ]]; then
     # Build your project
-    ./build.sh
+    sudo ./build.sh
 
-    # Log in to Docker Hub (Docker Hub credentials)
-    sudo docker login -u sedhussr -p dckr_pat_qKEqDaqK7TBBQHnXfcgVaaRdQ-M
-
-  
     # Tag the image
     sudo docker tag react-appimg sedhussr/dev
 
@@ -17,11 +13,7 @@ if [[ $GIT_BRANCH == "origin/dev" ]]; then
 
 elif [[ $GIT_BRANCH == "origin/main" ]]; then
     # Build your project
-    ./build.sh
-
-    # Log in to Docker Hub ( Docker Hub credentials)
-    sudo docker login -u sedhussr -p dckr_pat_qKEqDaqK7TBBQHnXfcgVaaRdQ-M
-
+    sudo ./build.sh
    
     # Tag the image
     sudo docker tag react-appimg sedhussr/prod 
