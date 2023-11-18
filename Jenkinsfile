@@ -1,14 +1,11 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_CRED='dockerhub'
+    }
 
     stages {
-        stage('Checkout') {
-            steps {
-               git branch: 'main',
-               url: 'https://github.com/Sedhusiva/react-project.git'
-            }
-        }
-
+        
         stage('Build and Push Docker Image') {
                 steps {
                 withCredentials([usernamePassword(credentialsId: "${DOCKER_CRED}",
