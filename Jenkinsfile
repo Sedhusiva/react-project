@@ -13,7 +13,7 @@ pipeline {
                 {
                 sh 'echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io'
                 }
-                script{
+                script {
                 sh 'sudo -u jenkins sudo chmod +x build.sh'
                 sh 'sudo -u jenkins sudo chmod +x deploy.sh'
 
