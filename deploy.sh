@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
-CURRENT_BRANCH=${GIT_BRANCH}
+#CURRENT_BRANCH=${GIT_BRANCH}
 # Check the Git branch
-if [ "$CURRENT_BRANCH" == "origin/dev" ]; then
+if [[ $GIT_BRANCH == "origin/dev" ]]; then
     # Build your project
     echo "building for dev"
     . sudo ./build.sh
@@ -13,7 +13,7 @@ if [ "$CURRENT_BRANCH" == "origin/dev" ]; then
     # Push the image to the Dev Docker Hub repository
     sudo docker push sedhussr/dev
 
-elif [ "$CURRENT_BRANCH" == "origin/main" ]; then
+elif [[ $GIT_BRANCH == "origin/main" ]]; then
     # Build your project
     echo "building for main"
     . sudo ./build.sh
