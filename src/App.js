@@ -36,7 +36,7 @@ class App extends Component {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>#</th>
+                <th>#reactapp</th>
                 <th>Name</th>
               </tr>
             </thead>
