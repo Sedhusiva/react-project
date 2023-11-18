@@ -4,7 +4,7 @@ CURRENT_BRANCH=${GIT_BRANCH}
 
 if [ "$CURRENT_BRANCH" == "origin/main" ]; then
 
-echo "building for main"
+echo "building for main."
 
 . ./build.sh
 
