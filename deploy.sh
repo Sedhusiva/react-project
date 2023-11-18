@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 # Check the Git branch
 if [ "$GIT_BRANCH" == "origin/dev" ]; then
     # Build your project
