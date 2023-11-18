@@ -14,11 +14,11 @@ pipeline {
                 sh 'echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io'
                 }
                 script{
-                sh 'sudo chmod +x build.sh'
-                sh 'sudo chmod +x deploy.sh'
+                sh 'sudo -u jenkins sudo chmod +x build.sh'
+                sh 'sudo -u jenkins sudo chmod +x deploy.sh'
 
                 // Build the Docker image using the build script
-                sh 'sudo ./deploy.sh'
+                sh 'sudo -u jenkins sudo ./deploy.sh'
                 }
 
               
