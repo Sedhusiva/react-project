@@ -3,7 +3,8 @@ set -e
 # Check the Git branch
 if [ "${GIT_BRANCH}" == "origin/dev" ]; then
     # Build your project
-    sudo ./build.sh
+    echo "building for dev"
+    . sudo ./build.sh
 
     # Tag the image
     sudo docker tag react-appimg sedhussr/dev
@@ -13,7 +14,8 @@ if [ "${GIT_BRANCH}" == "origin/dev" ]; then
 
 elif [ "${GIT_BRANCH}" == "origin/main" ]; then
     # Build your project
-    sudo ./build.sh
+    echo "building for main"
+    . sudo ./build.sh
    
     # Tag the image
     sudo docker tag react-appimg sedhussr/prod 
