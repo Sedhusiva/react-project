@@ -12,11 +12,11 @@ pipeline {
         }
         script {
           echo "Permission for build.sh"
-          sh 'sudo -u jenkins sudo chmod +x build.sh'
+          sh 'sudo chmod +x build.sh'
           echo "Permission for deploy.sh"
-          sh 'sudo -u jenkins sudo chmod +x deploy.sh'
+          sh 'sudo chmod +x deploy.sh'
           echo "Building the Docker image"
-          sh 'sudo -u jenkins sudo ./deploy.sh'
+          sh 'sudo ./deploy.sh'
         }
       }
     }
