@@ -3,4 +3,4 @@ services:
   reactapp:
     image: react-appimg
     ports:
-      - "8000:80"
+      - "80:80"
