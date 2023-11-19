@@ -1,6 +1,6 @@
 version: '3'
 services:
   reactapp:
-    image: sedhussr/prod
+    image: react-appimg
     ports:
       - "80:80"
