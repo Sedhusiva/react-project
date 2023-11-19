@@ -1,33 +1,28 @@
 #!/bin/bash
 
-# Check the Git branch
-if [[ $GIT_BRANCH == "origin/dev" ]]; then
-    # Build your project
-    ./build.sh
+CURRENT_BRANCH=${GIT_BRANCH}
 
-    # Log in to Docker Hub (Docker Hub credentials)
-    docker login -u sedhussr -p dckr_pat_qKEqDaqK7TBBQHnXfcgVaaRdQ-M
+if [ "$CURRENT_BRANCH" == "origin/main" ]; then
 
-  
-    # Tag the image
-    docker tag react-appimg sedhussr/dev
+echo "building for main"
 
-    # Push the image to the Dev Docker Hub repository
-    docker push sedhussr/dev
+. ./build.sh
 
-elif [[ $GIT_BRANCH == "origin/main" ]]; then
-    # Build your project
-    ./build.sh
+sudo docker tag react-appimg sedhussr/prod
 
-    # Log in to Docker Hub ( Docker Hub credentials)
-    docker login -u sedhussr -p dckr_pat_qKEqDaqK7TBBQHnXfcgVaaRdQ-M
+sudo docker push sedhussr/prod
 
-   
-    # Tag the image
-    docker tag react-appimg sedhussr/prod 
+elif [ "$CURRENT_BRANCH" == "origin/dev" ]; then
 
-    # Push the image to the Prod Docker Hub repository
-    docker push sedhussr/prod
+echo "building for dev"
+. ./build.sh
+
+sudo docker tag react-appimg sedhussr/dev 
+
+sudo docker push sedhussr/dev
+
 else
-    echo "Deployment error"
+
+echo "No action for branch"
+
 fi
