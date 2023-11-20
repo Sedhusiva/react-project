@@ -4,7 +4,7 @@
 echo "GIT_BRANCH: $GIT_BRANCH"
 
 # Check the Git branch
-if [[ $GIT_BRANCH == "origin/dev" ]]; then
+if [[ $GIT_BRANCH == "dev" ]]; then
     # Build your project
     ./build.sh
 
@@ -17,7 +17,7 @@ if [[ $GIT_BRANCH == "origin/dev" ]]; then
     # Push the image to the Dev Docker Hub repository
     docker push sedhussr/dev
 
-elif [[ $GIT_BRANCH == "origin/main" ]]; then
+elif [[ $GIT_BRANCH == "main" ]]; then
     # Build your project
     ./build.sh
 
