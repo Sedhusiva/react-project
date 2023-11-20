@@ -37,7 +37,7 @@ class App extends Component {
             <thead>
               <tr>
                 <th>#reactapp</th>
-                <th>Name</th>
+                <th>Sedhuram S</th>
               </tr>
             </thead>
             <tbody>
