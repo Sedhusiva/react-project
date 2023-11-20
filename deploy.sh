@@ -7,6 +7,12 @@ export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [[ $GIT_BRANCH == "dev" ]]; then
     # Your dev branch logic here
     echo "Building and deploying for dev branch"
+    ./build.sh
+    # tag the image
+    docker tag react-appimg sedhussr/dev
+
+    # push the image
+    docker push sedhussr/dev
 
 elif [[ $GIT_BRANCH == "main" ]]; then
     # Your main branch logic here
