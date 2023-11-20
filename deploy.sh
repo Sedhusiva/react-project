@@ -1,36 +1,37 @@
 #!/bin/bash
 
-# Print the value of GIT_BRANCH
-echo "GIT_BRANCH: $GIT_BRANCH"
+# Set the Git branch as an environment variable
+export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 # Check the Git branch
 if [[ $GIT_BRANCH == "dev" ]]; then
-    # Build your project
+    # Your dev branch logic here
+    echo "Building and deploying for dev branch"
     ./build.sh
-
-    # Log in to Docker Hub (replace with your actual Docker Hub credentials)
-    docker login -u sedhussr -p dckr_pat_qKEqDaqK7TBBQHnXfcgVaaRdQ-M
-
-    # Tag the image
+    # tag the image
     docker tag react-appimg sedhussr/dev
 
-    # Push the image to the Dev Docker Hub repository
+    # login credentials
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWD
+
+    # push the image
     docker push sedhussr/dev
 
 elif [[ $GIT_BRANCH == "main" ]]; then
-    # Build your project
-    ./build.sh
+    # Your main branch logic here
+    echo "Building and deploying for main branch"
+     ./build.sh
+    # tag the image
+    docker tag react-appimg sedhussr/prod
 
-    # Log in to Docker Hub (replace with your actual Docker Hub credentials)
-    docker login -u sedhussr -p dckr_pat_qKEqDaqK7TBBQHnXfcgVaaRdQ-M
+    # login credentials
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWD
 
-    # Tag the image
-    docker tag react-appimg sedhussr/prod 
-
-    # Push the image to the Prod Docker Hub repository
+    # push the image
     docker push sedhussr/prod
 
 else
-    echo "Deployment error: Unsupported branch - $GIT_BRANCH"
+    echo "Unsupported branch: $GIT_BRANCH"
+    exit 1
 fi
 
