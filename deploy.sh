@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check the Git branch
-if [[ $GIT_BRANCH == "dev" ]]; then
+if [[ $GIT_BRANCH == "origin/dev" ]]; then
     # Your dev branch logic here
     echo "Building and deploying for dev branch"
     ./build.sh
@@ -14,7 +14,7 @@ if [[ $GIT_BRANCH == "dev" ]]; then
     # push the image
     docker push sedhussr/dev
 
-elif [[ $GIT_BRANCH == "main" ]]; then
+elif [[ $GIT_BRANCH == "origin/main" ]]; then
     # Your main branch logic here
     echo "Building and deploying for main branch"
      ./build.sh
