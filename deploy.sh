@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Set the Git branch as an environment variable
-export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
 # Check the Git branch
 if [[ $GIT_BRANCH == "dev" ]]; then
     # Your dev branch logic here
