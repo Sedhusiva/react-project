@@ -1,8 +1,14 @@
 #!/bin/bash
 
-CURRENT_BRANCH=${GIT_BRANCH}
+# Print debug information
+echo "Branch: $GIT_BRANCH"
+echo "Commit: $GIT_COMMIT"
 
-if [ "$CURRENT_BRANCH" == "origin/main" ]; then
+# Extract branch name from GIT_BRANCH
+BRANCH_NAME=$(echo "$GIT_BRANCH" | awk -F'/' '{print $NF}')
+export BRANCH_NAME
+
+if [ "$BRANCH_NAME" == "origin/main" ]; then
 
 echo "building for main"
 
@@ -12,7 +18,7 @@ sudo docker tag react-appimg sedhussr/prod
 
 sudo docker push sedhussr/prod
 
-elif [ "$CURRENT_BRANCH" == "origin/dev" ]; then
+elif [ "$BRANCH_NAME" == "origin/dev" ]; then
 
 echo "building for dev"
 . ./build.sh
