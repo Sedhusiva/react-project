@@ -20,7 +20,7 @@ pipeline {
           sh 'sudo chmod +x build.sh'
           echo "Permission for deploy.sh"
           sh 'sudo chmod +x deploy.sh'
-          echo "Building the Docker image"
+          echo "Building the Docker image."
           sh 'sudo ./deploy.sh'
         }
       }
