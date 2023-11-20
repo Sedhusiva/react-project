@@ -1,25 +1,18 @@
 #!/bin/bash
 
+# Set the Git branch as an environment variable
+export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
 # Check the Git branch
-if [[ $GIT_BRANCH == "origin/dev" ]]; then
-    # Build your project
-    ./build.sh
+if [[ $GIT_BRANCH == "dev" ]]; then
+    # Your dev branch logic here
+    echo "Building and deploying for dev branch"
 
-    # Tag the image
-    docker tag react-appimg sedhussr/dev
+elif [[ $GIT_BRANCH == "main" ]]; then
+    # Your main branch logic here
+    echo "Building and deploying for main branch"
 
-    # Push the image to the Dev Docker Hub repository
-    docker push sedhussr/dev
-
-elif [[ $GIT_BRANCH == "origin/main" ]]; then
-    # Build your project
-    ./build.sh
-
-    # Tag the image
-    docker tag react-appimg sedhussr/prod 
-
-    # Push the image to the Prod Docker Hub repository
-    docker push sedhussr/prod
 else
-    echo "Deployment error"
+    echo "Unsupported branch: $GIT_BRANCH"
+    exit 1
 fi
