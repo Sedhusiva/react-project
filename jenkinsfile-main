@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    stages {
+        stage ('cloning') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/Sedhusiva/react-project.git'
+            }
+        }
+
+        stage ('login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: "${DOCKER_CRED}",
+                passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh 'echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io'
+                    }
+            }
+        }
+
+        stage ('deployment & Building') {
+            steps {
+                sh ' echo "Permission for build.sh" '
+                sh 'sudo chmod +x build.sh'
+                sh ' echo "Permission for deploy.sh" '
+                sh 'sudo chmod +x deploy.sh'
+                sh ' echo "Building the Docker image" '
+                sh 'sudo ./deploy.sh'
+            }
+        }
+    }
+}
