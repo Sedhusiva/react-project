@@ -6,7 +6,8 @@ pipeline {
   stages {
     stage('cloning') {
       steps {
-      git 'https://github.com/Sedhusiva/react-project.git'
+      git branch:'main',
+      url: 'https://github.com/Sedhusiva/react-project.git'
       }
     }
     stage('Build and Push Docker Image') {
