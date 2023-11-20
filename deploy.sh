@@ -11,6 +11,9 @@ if [[ $GIT_BRANCH == "dev" ]]; then
     # tag the image
     docker tag react-appimg sedhussr/dev
 
+    # login credentials
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWD
+
     # push the image
     docker push sedhussr/dev
 
